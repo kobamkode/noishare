@@ -5,5 +5,6 @@ export const playlist = sqliteTable('playlist', {
 	title: text().notNull(),
 	username: text().notNull(),
 	imageUrl: text().notNull(),
+	playlistUrl: text().notNull(),
 	created: integer({ mode: 'timestamp_ms' }).notNull()
 })
