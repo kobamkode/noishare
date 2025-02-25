@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "01097f8f-aebb-4c91-8d54-5301024b2291",
+  "id": "19c5000c-cdcc-47e5-8073-fe56f3f59ca1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "playlist": {
@@ -14,15 +14,15 @@
           "notNull": true,
           "autoincrement": true
         },
-        "title": {
-          "name": "title",
+        "name": {
+          "name": "name",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "username": {
-          "name": "username",
+        "owner": {
+          "name": "owner",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -35,12 +35,27 @@
           "notNull": true,
           "autoincrement": false
         },
-        "created": {
-          "name": "created",
+        "playlistExtUrl": {
+          "name": "playlistExtUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "collaborative": {
+          "name": "collaborative",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "created": {
+          "name": "created",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
         }
       },
       "indexes": {},
