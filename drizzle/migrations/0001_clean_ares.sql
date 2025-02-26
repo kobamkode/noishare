@@ -1,1 +1,0 @@
-ALTER TABLE `playlist` ADD `playlistId` text NOT NULL;

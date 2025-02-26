@@ -19,13 +19,17 @@ interface Owner {
         display_name: string;
 }
 export const fetchPlaylist = async (accessToken: string, playlistId: string): Promise<SpotifyPlaylistRootResponse> => {
-        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-                headers: {
-                        Authorization: `Bearer ${accessToken}`
-                }
-        });
+        try {
+                const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+                        headers: {
+                                Authorization: `Bearer ${accessToken}`
+                        }
+                });
 
-        const data: SpotifyPlaylistRootResponse = await response.json();
-        return data;
+                const data: SpotifyPlaylistRootResponse = await response.json();
+                return data;
+        } catch (error: any) {
+                return error
+        }
 };
 

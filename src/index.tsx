@@ -33,34 +33,43 @@ app.get('/', async (c) => {
                 </div>
         )
 }).post('/submit', async (c) => {
-        const tokenResp = await fetchToken(c.env.SPOTIFY_CLIENT_ID, c.env.SPOTIFY_CLIENT_SECRET)
-        const formData = await c.req.formData()
+        try {
+                const tokenResp = await fetchToken(c.env.SPOTIFY_CLIENT_ID, c.env.SPOTIFY_CLIENT_SECRET)
+                //TODO: check error response
+                const formData = await c.req.formData()
 
-        const playlistUrl = getString(formData.get('playlistUrl'))!.split('/')
-        const spotifyPlaylist = await fetchPlaylist(tokenResp.access_token, playlistUrl[4])
-
-        const db = drizzle(c.env.DB)
-        const findPlaylist = await db.$count(playlist, eq(playlist.playlistId, spotifyPlaylist.id))
-        console.log(findPlaylist)
-
-        if (findPlaylist > 0) {
-                throw new HTTPException(403)
-        }
+                const playlistUrl = getString(formData.get('playlistUrl'))!.split('/')
+                const spotifyPlaylist = await fetchPlaylist(tokenResp.access_token, playlistUrl[4])
+                //TODO: check error response
 
 
-        const submitPlaylist = {
-                name: spotifyPlaylist.name,
-                owner: spotifyPlaylist.owner.display_name,
-                playlistId: spotifyPlaylist.id,
-                playlistExtUrl: spotifyPlaylist.external_urls.spotify,
-                imageUrl: spotifyPlaylist.images[0].url,
-                collaborative: spotifyPlaylist.collaborative
-        }
+                //const db = drizzle(c.env.DB)
+                //const findPlaylist = await db.$count(playlist, eq(playlist.playlistId, spotifyPlaylist.id))
+                //console.log(findPlaylist)
+                //
+                //if (findPlaylist > 0) {
+                //        throw new HTTPException(403)
+                //}
 
-        if (spotifyPlaylist.type === 'playlist' && spotifyPlaylist.public === true) {
-                const db = drizzle(c.env.DB)
-                const insertPlaylist = await db.insert(playlist).values(submitPlaylist).returning()
-                console.log(insertPlaylist)
+                const submitPlaylist = {
+                        name: spotifyPlaylist.name,
+                        owner: spotifyPlaylist.owner.display_name,
+                        playlistId: spotifyPlaylist.id,
+                        playlistExtUrl: spotifyPlaylist.external_urls.spotify,
+                        imageUrl: spotifyPlaylist.images[0].url,
+                        collaborative: spotifyPlaylist.collaborative
+                }
+
+                console.log(submitPlaylist)
+
+                if (spotifyPlaylist.type === 'playlist' && spotifyPlaylist.public === true) {
+                        const db = drizzle(c.env.DB)
+                        const insertPlaylist = await db.insert(playlist).values(submitPlaylist).returning()
+                        console.log(insertPlaylist)
+                }
+
+        } catch (error) {
+                console.error(error)
         }
 })
 

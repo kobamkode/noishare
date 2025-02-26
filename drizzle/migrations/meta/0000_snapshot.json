@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "19c5000c-cdcc-47e5-8073-fe56f3f59ca1",
+  "id": "a1cf33c7-3dbf-4731-86b6-0dcf867a38e9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "playlist": {
@@ -30,6 +30,13 @@
         },
         "imageUrl": {
           "name": "imageUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "playlistId": {
+          "name": "playlistId",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
