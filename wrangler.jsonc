@@ -6,29 +6,11 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],
    "d1_databases": [
      {
        "binding": "DB",
        "database_name": "noishare",
        "database_id": "a1e15b61-872b-4059-b0df-00cacaa17af4"
      }
-   ],
-  // "ai": {
-  //   "binding": "AI"
-  // }
+   ]
 }
