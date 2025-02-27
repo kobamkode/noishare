@@ -18,7 +18,11 @@ export const fetchToken = async (clientId: string, clientSecret: string): Promis
                 body: params
         });
 
-        const data: SpotifyTokenResponse = await response.json();
-        return data;
+        if (!response.ok) {
+                throw new Error(`${response.status}: Failed to fetch token`)
+        } else {
+                const data: SpotifyTokenResponse = await response.json();
+                return data;
+        }
 };
 

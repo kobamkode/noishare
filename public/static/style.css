@@ -8,6 +8,7 @@
       "Courier New", monospace;
     --color-blue-700: oklch(0.488 0.243 264.376);
     --color-gray-100: oklch(0.967 0.003 264.542);
+    --color-gray-300: oklch(0.872 0.01 258.338);
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
@@ -229,6 +230,9 @@
   .bg-gray-100 {
     background-color: var(--color-gray-100);
   }
+  .bg-gray-300 {
+    background-color: var(--color-gray-300);
+  }
   .object-cover {
     object-fit: cover;
   }
@@ -267,6 +271,12 @@
   .md\:grid-cols-3 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .lg\:size-60 {
+    @media (width >= 64rem) {
+      width: calc(var(--spacing) * 60);
+      height: calc(var(--spacing) * 60);
     }
   }
   .lg\:grid-cols-4 {

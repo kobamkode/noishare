@@ -19,17 +19,17 @@ interface Owner {
         display_name: string;
 }
 export const fetchPlaylist = async (accessToken: string, playlistId: string): Promise<SpotifyPlaylistRootResponse> => {
-        try {
-                const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-                        headers: {
-                                Authorization: `Bearer ${accessToken}`
-                        }
-                });
-
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+                headers: {
+                        Authorization: `Bearer ${accessToken}`
+                }
+        });
+        if (!response.ok) {
+                throw new Error(`${response.status}: Failed to fetch playlist`)
+        } else {
                 const data: SpotifyPlaylistRootResponse = await response.json();
                 return data;
-        } catch (error: any) {
-                return error
         }
+
 };
 
