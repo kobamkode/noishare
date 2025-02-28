@@ -2,7 +2,7 @@
   "name": "noishare",
   "type": "module",
   "scripts": {
-    "dev": "bunx @tailwindcss/cli -i public/static/input.css -o public/static/style.css && vite",
+    "dev": "bun run style && vite",
     "build": "vite build",
     "preview": "wrangler pages dev",
     "deploy": "bun run build && wrangler pages deploy",
@@ -11,9 +11,10 @@
     "db:up": "bun drizzle-kit up --config=drizzle.config.ts"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.66.8",
+    "@hono-rate-limiter/cloudflare": "^0.2.2",
     "drizzle-orm": "^0.39.3",
-    "hono": "^4.7.2"
+    "hono": "^4.7.2",
+    "hono-rate-limiter": "^0.4.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241218.0",

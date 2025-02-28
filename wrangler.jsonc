@@ -6,11 +6,18 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-   "d1_databases": [
+  "d1_databases": [
      {
        "binding": "DB",
        "database_name": "noishare",
        "database_id": "a1e15b61-872b-4059-b0df-00cacaa17af4"
      }
-   ]
+  ],
+  "kv_namespaces": [
+     {
+       "binding": "CACHE",
+       "id": "d38651aa118f4bb0b9468ad90596823d",
+     }
+  ]
+
 }
