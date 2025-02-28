@@ -12,11 +12,5 @@
       "database_name": "noishare",
       "database_id": "a1e15b61-872b-4059-b0df-00cacaa17af4"
     }
-  ],
-  "kv_namespaces": [
-    {
-      "binding": "CACHE",
-      "id": "10851591600b43f38bc1867e89fe8738"
-    }
   ]
 }

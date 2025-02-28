@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
-import { Hono, Context, Next } from 'hono'
+import { Hono } from 'hono'
 import { UrlInput } from './components/UrlInput'
 import { playlist } from './db/schema'
 import { fetchToken, fetchPlaylist } from './spotifyWebAPI'
@@ -8,29 +8,15 @@ import { renderer } from './renderer'
 import { HTTPException } from 'hono/http-exception'
 import { PlaylistWrapper } from './components/PlaylistWrapper'
 import { secureHeaders } from 'hono/secure-headers'
-import { rateLimiter } from "hono-rate-limiter"
-import { WorkersKVStore } from '@hono-rate-limiter/cloudflare'
-import { KVNamespace } from '@cloudflare/workers-types/experimental'
 
 export interface Env {
         DB: D1Database,
-        CACHE: KVNamespace,
         SPOTIFY_CLIENT_ID: string,
         SPOTIFY_CLIENT_SECRET: string
 }
 
 const app = new Hono<{ Bindings: Env }>()
 app.use(secureHeaders())
-app.use(
-        (c: Context, next: Next) =>
-                rateLimiter<{ Bindings: Env }>({
-                        windowMs: 15 * 60 * 1000,
-                        limit: 10,
-                        standardHeaders: "draft-6",
-                        keyGenerator: (c) => c.req.header("cf-connecting-ip") ?? "",
-                        store: new WorkersKVStore({ namespace: c.env.CACHE }),
-                })(c, next)
-)
 app.use(renderer)
 app.get('/', async (c) => {
         const db = drizzle(c.env.DB)
