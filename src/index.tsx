@@ -10,6 +10,7 @@ import { PlaylistWrapper } from './components/PlaylistWrapper'
 import { secureHeaders } from 'hono/secure-headers'
 import { rateLimiter } from "hono-rate-limiter"
 import { WorkersKVStore } from '@hono-rate-limiter/cloudflare'
+import { KVNamespace } from '@cloudflare/workers-types/experimental'
 
 export interface Env {
         DB: D1Database,
