@@ -1,6 +1,6 @@
 import { PlaylistCard } from './PlaylistCard';
 
-interface PlaylistItem {
+type PlaylistItem = {
         id: number;
         name: string;
         owner: string;

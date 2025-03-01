@@ -1,17 +1,14 @@
-interface PlaylistCardProps {
-        id: number
+type PlaylistCardProps = {
         name: string
         owner: string
         imageUrl: string
-        playlistId: string
         playlistExtUrl: string
-        collaborative: boolean
-        created: string
 }
+
 export const PlaylistCard = ({ playlistExtUrl, imageUrl, name, owner }: PlaylistCardProps) => {
         return (
                 <a href={playlistExtUrl} className="block group">
-                        <div className="rounded-lg bg-gray-100 p-3 transition-transform hover:scale-105 lg:size-60">
+                        <div className="p-3">
                                 <div className="relative aspect-square overflow-hidden rounded-md">
                                         <img
                                                 src={imageUrl}
@@ -21,8 +18,8 @@ export const PlaylistCard = ({ playlistExtUrl, imageUrl, name, owner }: Playlist
                                                 sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, 50vw" />
                                 </div>
                                 <div className="mt-3 space-y-1">
-                                        <h3 className="font-medium">{name}</h3>
-                                        <p className="text-sm text-muted-foreground">{owner}</p>
+                                        <h3 className="text-[#1ed760] font-medium">{name}</h3>
+                                        <p className="text-sm text-[#a0a0a0]">{owner}</p>
                                 </div>
                         </div>
                 </a>

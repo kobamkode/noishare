@@ -62,6 +62,7 @@ app.get('/', async (c) => {
                                                 imageUrl: spotifyPlaylist.images[0].url,
                                                 collaborative: spotifyPlaylist.collaborative
                                         }
+                                        console.log(submitPlaylist)
 
                                         if (spotifyPlaylist.type === 'playlist' && spotifyPlaylist.public === true) {
                                                 const db = drizzle(c.env.DB)
